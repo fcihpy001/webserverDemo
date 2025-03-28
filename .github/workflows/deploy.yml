@@ -1,0 +1,28 @@
+name: Docker CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: CheckOut code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t webserver:latest .
+         
+
+      - name: Run tests
+        run: |
+          docker run --rm webserver:latest pytest
+
+      - name: Pu

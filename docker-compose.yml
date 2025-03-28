@@ -1,0 +1,10 @@
+
+services:
+  webserver:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    environment:
+      - GIN_MODE=DEBUG
