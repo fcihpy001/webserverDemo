@@ -24,6 +24,12 @@ jobs:
             echo "SSH_PRIVATE_KEY: ***"
           # SSH到远程服务器
 
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
       - name: Deploy via SSH and Build Docker Image
         uses: appleboy/ssh-action@v0.1.3
         with:
