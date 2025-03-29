@@ -17,6 +17,9 @@ echo "✅ 读取 .env 文件..."
 
 SERVER_IP=$(grep SERVER_IP .env | cut -d '=' -f2)
 SERVER_USER=$(grep SERVER_USER .env | cut -d '=' -f2)
+DOCKER_IMAGE=$(grep DOCKER_IMAGE .env | cut -d '=' -f2)
+DOCKER_TAG=$(grep DOCKER_TAG .env | cut -d '=' -f2)
+PORT=$(grep PORT .env | cut -d '=' -f2)
 SSH_PRIVATE_KEY=$(grep -A 100 SSH_PRIVATE_KEY .env | cut -d '=' -f2-)
 
 # 检查变量是否为空
@@ -32,6 +35,10 @@ echo "🔑 设置 GitHub Secrets..."
 
 gh secret set SERVER_IP -b"$SERVER_IP" -R "$REPO"
 gh secret set SERVER_USER -b"$SERVER_USER" -R "$REPO"
+gh secret set DOCKER_IMAGE -b"$DOCKER_IMAGE" -R "$REPO"
+gh secret set DOCKER_TAG -b"$DOCKER_TAG" -R "$REPO"
+gh secret set PORT -b"$PORT" -R "$REPO"
 gh secret set SSH_PRIVATE_KEY -b"$SSH_PRIVATE_KEY" -R "$REPO"
+
 
 echo "✅ GitHub Secrets 设置完成！"
