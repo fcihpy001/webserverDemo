@@ -16,10 +16,6 @@ jobs:
       - name: CheckOut code
         uses: actions/checkout@v3
 
-      - name: Load .env var
-        run: |
-          ./script/set_secrets.sh
-
       - name: Display environment variables (secret values will not be printed)
         run: |
             echo "SERVER_IP: $SERVER_IP"
